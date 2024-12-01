@@ -1,0 +1,13 @@
+<launch>
+  <!-- Load robot description -->
+  <param name="robot_description" command="xacro $(find rover)/models/urdf/car-robot.xacro"/>
+
+  <!-- Start Gazebo with the GUI -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch"/>
+
+  <!-- Spawn the robot model in Gazebo -->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-file $(find rover)/models/urdf/car-robot-xacro.urdf -urdf -z 1 -model rover" />
+  
+  <!-- <rosparam file="$(find rover)/src/controller/controller.yaml" command="load"/> -->
+  <!-- <node name="controller_spawner" pkg="controller_manager" type="spawner" args="joint_state_controller diff_drive_controller" output="screen"/> -->
+</launch>

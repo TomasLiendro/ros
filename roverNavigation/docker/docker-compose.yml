@@ -1,0 +1,24 @@
+services:
+  ros1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ros1_container
+    volumes:
+      - ../src:/workspace/src  # Montar el directorio de código fuente
+      - /tmp/.X11-unix:/tmp/.X11-unix  # For Gazebo to access X server on host
+      - /dev/bus/usb:/dev/bus/usb  # For RealSense camera device
+    # ports:
+      # - "11311:11311"  # Expose ROS Master port
+    environment:
+      - ROS_MASTER_URI=http://localhost:11311
+      - ROS_HOSTNAME=localhost
+      - DISPLAY=${DISPLAY}
+      - ROS_DOMAIN_ID=0
+    stdin_open: true
+    tty: true
+    privileged: true  # Required for accessing devices like cameras
+    network_mode: host  # Allow container to share the host network (important for Gazebo)
+    # command: ["bash", "-c", "source /workspace/install/setup.bash && ros2 launch <your_launch_file>.py"]  # Customize with your launch file
+
+

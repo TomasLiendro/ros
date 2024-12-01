@@ -1,0 +1,7 @@
+<launch>
+    <!-- Start node1 -->
+    <node pkg="ros_basics" type="simple_publisher" name="simple_publisher" />
+
+    <!-- Start node2 -->
+    <node pkg="ros_basics" type="simple_subscriber" name="simple_subscriber" />
+</launch>

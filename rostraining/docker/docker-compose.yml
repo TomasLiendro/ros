@@ -1,0 +1,17 @@
+services:
+  ros1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ros1_container
+    volumes:
+      - ../src:/workspace/src  # Montar el directorio de código fuente
+    ports:
+      - "11311:11311"           # Exponer el puerto maestro de ROS
+    environment:
+      - ROS_MASTER_URI=http://localhost:11311
+      - ROS_HOSTNAME=localhost
+    stdin_open: true
+    tty: true
+
+
